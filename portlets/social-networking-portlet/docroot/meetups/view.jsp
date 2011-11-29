@@ -29,7 +29,7 @@ else if (tabs1.equals("my-meetups")) {
 }
 %>
 
-<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) || permissionChecker.isCommunityOwner(group.getGroupId())%>">
 
 	<%
 	PortletURL portletURL = renderResponse.createRenderURL();
@@ -81,7 +81,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 				thumbnailURL = request.getContextPath() + "/meetups/images/calendar.png";
 			}
 			else {
-				thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + WebServerServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
+				thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + ImageServletTokenUtil.getToken(meetupsEntry.getThumbnailId());
 			}
 			%>
 
@@ -116,7 +116,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<liferay-ui:icon-list>
 
-				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) || permissionChecker.isCommunityOwner(group.getGroupId())%>">
 
 					<%
 					PortletURL editMeetupsEntryURL = renderResponse.createRenderURL();
@@ -142,7 +142,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 					url="<%= viewMeetupsEntryURL.toString() %>"
 				/>
 
-				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) || permissionChecker.isCommunityOwner(group.getGroupId())%>">
 
 					<%
 					PortletURL deleteMeetupsEntryURL = renderResponse.createActionURL();
